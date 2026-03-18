@@ -19,7 +19,7 @@
             position: relative;
         }
 
-        
+        /* TELA DE INÍCIO COM DESFOQUE */
         #entry-overlay {
             position: fixed;
             top: 0; left: 0;
@@ -229,7 +229,7 @@
             mTitle.innerText = songs[i].n;
         }
 
-
+        // FUNÇÃO PARA INICIAR O SITE E DESBORRAR
         function startExperience() {
             const overlay = document.getElementById('entry-overlay');
             overlay.style.opacity = '0';
@@ -237,7 +237,7 @@
                 overlay.style.visibility = 'hidden';
             }, 800);
 
-           
+            // Inicia a música
             load(0);
             audio.play().then(() => {
                 pIcon.className = "fas fa-pause btn";
@@ -280,6 +280,7 @@
             setTimeout(() => t.style.opacity = '0', 2000);
         }
 
+        // Removi o load(0) automático aqui para ele ser chamado só no clique inicial
         audio.volume = 0.5;
     </script>
 </body>
