@@ -82,7 +82,7 @@
 
         .discord-pill img { width: 38px; height: 38px; border-radius: 50%; }
         .discord-txt { text-align: left; }
-        .discord-txt b { color: #fff; font-size: 0.85rem; display: block; }
+        .discord-txt b { color: #ffffff; font-size: 0.85rem; display: block; }
         .discord-txt span { color: rgba(255,255,255,0.25); font-size: 0.65rem; text-transform: uppercase; }
 
         .icon-container { display: flex; justify-content: center; gap: 22px; }
@@ -95,7 +95,7 @@
             right: 25px;
             background: rgba(15, 15, 15, 0.8);
             backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(35, 252, 15, 0.1);
             border-radius: 16px;
             padding: 12px;
             width: 280px;
@@ -107,16 +107,16 @@
 
         .mini-info { display: flex; align-items: center; gap: 10px; }
         .mini-img { width: 42px; height: 42px; border-radius: 6px; object-fit: cover; }
-        .mini-text b { color: #fff; font-size: 0.8rem; display: block; }
-        .mini-text span { color: #666; font-size: 0.7rem; }
+        .mini-text b { color: #ffffff; font-size: 0.8rem; display: block; }
+        .mini-text span { color: #7e7d7d; font-size: 0.7rem; }
 
         .mini-controls { display: flex; align-items: center; justify-content: space-between; }
-        .control-btns { display: flex; gap: 15px; color: #fff; align-items: center; }
+        .control-btns { display: flex; gap: 15px; color: #0cdf1d; align-items: center; }
         .btn { cursor: pointer; opacity: 0.7; transition: 0.2s; }
         .btn:hover { opacity: 1; }
         
         .vol-box { display: flex; align-items: center; gap: 8px; width: 80px; }
-        .vol-slider { width: 100%; height: 3px; cursor: pointer; accent-color: #ff0000; }
+        .vol-slider { width: 100%; height: 3px; cursor: pointer; accent-color: #2cd30a; }
 
         #toast {
             position: fixed; bottom: 40px; background: rgba(255,255,255,0.1);
@@ -172,7 +172,7 @@
         </div>
     </div>
 
-    <div id="toast">USER COPIADO!</div>
+    <div id="toast">Discord copiado</div>
     <audio id="player"></audio>
 
     <script>
@@ -182,9 +182,10 @@
         let index = 0;
 
         const songs = [
+            { n: "Waiting", f: "waii.mp3" },
+            { n: "cats in the cold", f: "musicadojusto1.mp3" },
             { n: "COULD BE WRONG", f: "musica3.mp3" },
-            { n: "Do To Me", f: "musica2.mp3" },
-            { n: "I Will Find", f: "musica1.mp3" }
+            { n: "Do To Me", f: "musica2.mp3" }
         ];
 
         function load(i) {
