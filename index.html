@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-
+       
         body {
             background: #000;
             height: 100vh;
@@ -18,6 +18,9 @@
             overflow: hidden;
             position: relative;
         }
+
+
+        
 
         /* TELA DE INÍCIO COM DESFOQUE */
         #entry-overlay {
@@ -55,7 +58,7 @@
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: linear-gradient(45deg, #000000, #4a0000, #000000, #2a0000);
+            background: linear-gradient(45deg, #050505, #1a1a1a, #0f0f0f, #000000);
             background-size: 400% 400%;
             animation: gradientBG 12s ease infinite;
             z-index: 0;
@@ -76,65 +79,121 @@
             pointer-events: none;
         }
 
-        .profile-card {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(25px);
+                .profile-card {
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(25px); /* Aumenta o desfoque do fundo */
             -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Borda fina "cristalina" */
             border-radius: 40px;
             padding: 50px 25px;
             width: 360px;
             text-align: center;
             z-index: 10;
             box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+            transition: 0.5s ease;
         }
 
-                .avatar {
+        /* Faz o card inteiro dar uma leve iluminada quando você passa o mouse */
+        .profile-card:hover {
+            border: 1px solid rgba(255, 0, 0, 0.2); /* Borda levemente vermelha no foco */
+            box-shadow: 0 40px 100px rgba(255, 0, 0, 0.1);
+        }
+
+        .avatar {
             width: 105px; height: 105px;
             border-radius: 50%;
             margin-bottom: 20px;
             border: 2px solid rgba(255, 255, 255, 0.2);
             object-fit: cover;
-            /* Aqui entra o efeito de brilho */
-            box-shadow: 0 0 20px rgba(209, 199, 199, 0.4);
+            box-shadow: 0 0 20px rgba(153, 149, 149, 0.4);
             animation: glow 3s infinite alternate;
         }
 
-        /* Essa é a animação que faz o brilho "pulsar" */
         @keyframes glow {
             0% {
-                box-shadow: 0 0 10px rgba(252, 241, 241, 0.3), 0 0 20px rgba(238, 232, 232, 0.2);
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.2);
                 transform: scale(1);
             }
             100% {
-                box-shadow: 0 0 25px rgba(235, 231, 231, 0.6), 0 0 40px rgba(230, 225, 225, 0.3);
+                box-shadow: 0 0 25px rgba(255, 255, 255, 0.6), 0 0 40px rgba(0, 0, 0, 0.3);
                 transform: scale(1.03);
             }
         }
 
         h1 { color: #fff; font-weight: 200; font-size: 2rem; letter-spacing: 6px; margin-bottom: 35px; }
 
-        .discord-pill {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 50px;
-            padding: 12px 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            cursor: pointer;
-            transition: 0.4s;
-            margin-bottom: 40px;
-        }
+                /* Estilo base do Card (Ajustado para animação) */
+            .discord-pill {
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 50px;
+                padding: 12px 20px;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                cursor: pointer;
+                margin-bottom: 40px;
+                
+                /* ESSA LINHA É A CHAVE: Faz tudo mover suavemente */
+                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+                position: relative;
+                overflow: hidden;
+            }
 
-        .discord-pill img { width: 38px; height: 38px; border-radius: 50%; }
-        .discord-txt { text-align: left; }
+            /* ANIMAÇÃO AO PASSAR O MOUSE */
+            .discord-pill:hover {
+                transform: translateY(-5px) scale(1.02); /* Sobe um pouco e cresce levemente */
+                background: rgba(255, 255, 255, 0.06);
+                border: 1px solid rgba(88, 101, 242, 0.4); /* Borda levemente roxa do Discord */
+                
+                /* Brilho (Glow) externo */
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(88, 101, 242, 0.2);
+            }
+
+            /* Animação na Foto dentro do Card */
+            .discord-pill img {
+                width: 38px; height: 38px; border-radius: 50%;
+                transition: transform 0.4s ease;
+            }
+
+            .discord-pill:hover img {
+                transform: scale(1.1) rotate(5deg); /* Foto cresce e gira um tiquinho */
+            }
+                    .discord-txt { text-align: left; }
         .discord-txt b { color: #ffffff; font-size: 0.85rem; display: block; }
         .discord-txt span { color: rgba(255,255,255,0.25); font-size: 0.65rem; text-transform: uppercase; }
 
-        .icon-container { display: flex; justify-content: center; gap: 22px; }
-        .icon-link { color: #fff; opacity: 0.4; transition: 0.3s; font-size: 1.6rem; text-decoration: none; }
-        .icon-link:hover { opacity: 1; transform: translateY(-3px); }
+        .icon-container { display: flex; justify-content: center; gap: 22px; margin-top: 20px; }
+        .icon-link { color: #fff; opacity: 0.3; transition: 0.4s ease; font-size: 1.6rem; text-decoration: none; }
+        
+        /* HOVER GERAL: GIRA 10 GRAUS */
+        .icon-link:hover { 
+            opacity: 1; 
+            transform: rotate(10deg); 
+        }
+        
+        /* Instagram: Gradiente Real */
+        .icon-instagram:hover { 
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 8px rgba(214, 36, 159, 0.5));
+        }
+        
+        /* TikTok: Efeito Neon Ciano/Rosa */
+        .icon-tiktok:hover { 
+            color: #fff;
+            text-shadow: 2px 2px #ff0050, -2px -2px #00f2ea; 
+        }
+        
+        /* Discord: Blurple Oficial */
+        .icon-discord:hover { 
+            color: #5865F2; 
+            filter: drop-shadow(0 0 10px rgba(88, 101, 242, 0.6));
+        }
+        .icon-roblox:hover img { 
+            filter: invert(33%) sepia(87%) saturate(2256%) hue-rotate(195deg) brightness(101%) contrast(106%) !important; 
+        } 
 
         .spotify-mini {
             position: fixed;
@@ -142,7 +201,7 @@
             right: 25px;
             background: rgba(15, 15, 15, 0.8);
             backdrop-filter: blur(15px);
-            border: 1px solid rgba(35, 252, 15, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 16px;
             padding: 12px;
             width: 280px;
@@ -158,12 +217,12 @@
         .mini-text span { color: #7e7d7d; font-size: 0.7rem; }
 
         .mini-controls { display: flex; align-items: center; justify-content: space-between; }
-        .control-btns { display: flex; gap: 15px; color: #0cdf1d; align-items: center; }
+        .control-btns { display: flex; gap: 15px; color: #1DB954; align-items: center; }
         .btn { cursor: pointer; opacity: 0.7; transition: 0.2s; }
         .btn:hover { opacity: 1; }
         
         .vol-box { display: flex; align-items: center; gap: 8px; width: 80px; }
-        .vol-slider { width: 100%; height: 3px; cursor: pointer; accent-color: #2cd30a; }
+        .vol-slider { width: 100%; height: 3px; cursor: pointer; accent-color: #1DB954; }
 
         #toast {
             position: fixed; bottom: 40px; background: rgba(255,255,255,0.1);
@@ -193,11 +252,11 @@
         </div>
 
         <div class="icon-container">
-            <a href="https://www.instagram.com/knt26k/" target="_blank" class="icon-link"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.tiktok.com/@kauan_szzz" target="_blank" class="icon-link"><i class="fab fa-tiktok"></i></a>
-            <a href="javascript:void(0)" onclick="copyDiscord()" class="icon-link"><i class="fab fa-discord"></i></a>
-            <a href="https://www.roblox.com/users/7261590246/profile" target="_blank" class="icon-link">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Roblox_player_icon_black.svg" style="width:22px; filter:invert(1)">
+            <a href="https://www.instagram.com/knt26k/" target="_blank" class="icon-link icon-instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@kauan_szzz" target="_blank" class="icon-link icon-tiktok"><i class="fab fa-tiktok"></i></a>
+            <a href="javascript:void(0)" onclick="copyDiscord()" class="icon-link icon-discord"><i class="fab fa-discord"></i></a>
+            <a href="https://www.roblox.com/users/7261590246/profile" target="_blank" class="icon-link icon-roblox">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Roblox_player_icon_black.svg" style="width:22px; filter:invert(1); transition: 0.4s;">
             </a>
         </div>
     </div>
@@ -244,7 +303,6 @@
             mTitle.innerText = songs[i].n;
         }
 
-        // FUNÇÃO PARA INICIAR O SITE E DESBORRAR
         function startExperience() {
             const overlay = document.getElementById('entry-overlay');
             overlay.style.opacity = '0';
@@ -252,7 +310,6 @@
                 overlay.style.visibility = 'hidden';
             }, 800);
 
-            // Inicia a música
             load(0);
             audio.play().then(() => {
                 pIcon.className = "fas fa-pause btn";
@@ -295,8 +352,18 @@
             setTimeout(() => t.style.opacity = '0', 2000);
         }
 
-        // Removi o load(0) automático aqui para ele ser chamado só no clique inicial
         audio.volume = 0.5;
     </script>
 </body>
 </html>
+<script>
+    let titleOriginal = document.title; // Salva o título original (Perfil | KnRichBoy)
+
+    window.onblur = function () {
+        document.title = "Ei! Volta aqui "; // O que aparece quando ele sai da aba
+    };
+
+    window.onfocus = function () {
+        document.title = titleOriginal; // O que aparece quando ele volta
+    };
+</script>
