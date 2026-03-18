@@ -89,12 +89,27 @@
             box-shadow: 0 40px 100px rgba(0,0,0,0.8);
         }
 
-        .avatar {
+                .avatar {
             width: 105px; height: 105px;
             border-radius: 50%;
             margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.2);
             object-fit: cover;
+            /* Aqui entra o efeito de brilho */
+            box-shadow: 0 0 20px rgba(209, 199, 199, 0.4);
+            animation: glow 3s infinite alternate;
+        }
+
+        /* Essa é a animação que faz o brilho "pulsar" */
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 10px rgba(252, 241, 241, 0.3), 0 0 20px rgba(238, 232, 232, 0.2);
+                transform: scale(1);
+            }
+            100% {
+                box-shadow: 0 0 25px rgba(235, 231, 231, 0.6), 0 0 40px rgba(230, 225, 225, 0.3);
+                transform: scale(1.03);
+            }
         }
 
         h1 { color: #fff; font-weight: 200; font-size: 2rem; letter-spacing: 6px; margin-bottom: 35px; }
